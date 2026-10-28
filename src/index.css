@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+:root {
+  /* User-defined palette with corporate architectural precision */
+  --crimson: #9B1D20;
+  --crimson-hover: #7a1618;
+  --crimson-dark: #661215;
+  --crimson-subtle: #fdf2f2;
+
+  --midnight: #3D2B3D;
+  --midnight-dark: #161017;
+  --midnight-surface: #201721;
+  --midnight-border: #382739;
+  --midnight-muted: #9c8e9c;
+
+  --charcoal: #635D5C;
+  --charcoal-light: #857e7d;
+  --charcoal-subtle: #f4f3f3;
+  --charcoal-border: #ded8d8;
+
+  --tea-green: #CBEFB6;
+  --tea-green-bright: #D0FFCE;
+  --tea-green-subtle: #f3fbf0;
+  --tea-green-border: #b8e59e;
+  --tea-green-dark: #1d4013;
+
+  /* Global light surface tokens */
+  --background: #fbfbfa;
+  --foreground: #1c151d;
+  --card: #ffffff;
+  --border: #ded8d8;
+  --muted-text: #574f56;
+
+  /* Global dark surface tokens */
+  --dark-bg: #161017;
+  --dark-card: #201721;
+  --dark-border: #382739;
+  --dark-text: #ffffff;
+  --dark-muted: #dcd4dc;
+}
+
+@theme {
+  --color-crimson: var(--crimson);
+  --color-crimson-hover: var(--crimson-hover);
+  --color-crimson-dark: var(--crimson-dark);
+  --color-crimson-subtle: var(--crimson-subtle);
+
+  --color-midnight: var(--midnight);
+  --color-midnight-dark: var(--midnight-dark);
+  --color-midnight-surface: var(--midnight-surface);
+  --color-midnight-border: var(--midnight-border);
+  --color-midnight-muted: var(--midnight-muted);
+
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-light: var(--charcoal-light);
+  --color-charcoal-subtle: var(--charcoal-subtle);
+  --color-charcoal-border: var(--charcoal-border);
+
+  --color-tea-green: var(--tea-green);
+  --color-tea-green-bright: var(--tea-green-bright);
+  --color-tea-green-subtle: var(--tea-green-subtle);
+  --color-tea-green-border: var(--tea-green-border);
+  --color-tea-green-dark: var(--tea-green-dark);
+
+  /* Semantic mappings */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-border: var(--border);
+
+  /* Open Sans consistently used across headings, body, and labels */
+  --font-heading: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Open Sans', sans-serif;
+  color: var(--foreground);
+  background-color: var(--background);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Headings inherit color so utility classes like text-white or text-[#1c151d] work reliably */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Open Sans', sans-serif;
+  color: inherit;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  line-height: 1.14;
+}
+
+h2 {
+  line-height: 1.22;
+}
+
+h3 {
+  line-height: 1.32;
+}
+
+/* Comfortable body text reading line-height */
+p {
+  line-height: 1.7;
+}
+
+/* Tabular figures for technical data and numbers */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Modern Accessible Form Validation from Modern Web Guidance */
+input:user-invalid,
+select:user-invalid,
+textarea:user-invalid {
+  border-color: #9B1D20 !important;
+  background-color: #fdf2f2 !important;
+}
+
+input:user-valid:not(:placeholder-shown),
+select:user-valid,
+textarea:user-valid:not(:placeholder-shown) {
+  border-color: #1d4013 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
