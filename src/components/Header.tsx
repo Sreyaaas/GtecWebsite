@@ -108,13 +108,13 @@ export const Header: React.FC = () => {
           <GtecLogo variant={solid ? 'dark' : 'light'} />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-10" aria-label={c.main}>
+        <nav className="hidden lg:flex items-center gap-7 xl:gap-10" aria-label={c.main}>
           {c.nav.map((l) => (
             <NavLink
               key={l.href}
               to={l.href}
               className={({ isActive }) =>
-                `relative py-2 text-[0.975rem] transition-opacity ${isActive ? 'opacity-100' : 'opacity-75 hover:opacity-100'}`
+                `relative whitespace-nowrap py-2 text-[0.975rem] transition-opacity ${isActive ? 'opacity-100' : 'opacity-75 hover:opacity-100'}`
               }
             >
               {({ isActive }) => (
@@ -131,11 +131,11 @@ export const Header: React.FC = () => {
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-7">
+        <div className="hidden lg:flex items-center gap-5 xl:gap-7">
           <LanguageSwitch
-            className={`border-e pe-7 text-[0.975rem] opacity-80 hover:opacity-100 ${solid ? 'border-line' : 'border-white/25'}`}
+            className={`whitespace-nowrap border-e pe-5 xl:pe-7 text-[0.975rem] opacity-80 hover:opacity-100 ${solid ? 'border-line' : 'border-white/25'}`}
           />
-          <a href={telHref(companyData.phone)} className="text-[0.975rem] tabular-nums opacity-90 hover:opacity-100">
+          <a href={telHref(companyData.phone)} className="hidden xl:inline whitespace-nowrap text-[0.975rem] tabular-nums opacity-90 hover:opacity-100">
             <Ltr>{companyData.phone}</Ltr>
           </a>
           <Link
