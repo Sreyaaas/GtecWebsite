@@ -1,32 +1,30 @@
-# React + TypeScript + Vite
+# GTEC Elevators website
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Marketing site for Global Team Elevator Co. (Dammam, Saudi Arabia). React 19, Vite, Tailwind CSS 4.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # production build in dist/
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Design system
+
+- **Colours** come from the logo: navy `#233D90` for actions and links, deep navy `#0F1E45` for headings and dark bands, with the red and green kept for the logo mark. Tokens live in `src/index.css`.
+- **Type** is IBM Plex Sans, self-hosted through `@fontsource` (no Google Fonts request). It has a matching Arabic family, IBM Plex Sans Arabic, for a future Arabic version.
+- **Logo**: `src/components/GtecLogo.tsx` is a vector redraw of the chevron mark. If you have the original vector logo, swap it in there and in `public/favicon.svg`.
+
+## Quotation form
+
+`src/components/QuoteForm.tsx` sends enquiries in one of two ways:
+
+1. Set `VITE_ENQUIRY_ENDPOINT` (for example a Formspree, Basin or Getform URL) in `.env` and enquiries are posted there as JSON.
+2. Without it, submitting opens the visitor's email app with the enquiry addressed to `sales@gtecelevators.com`.
+
+## Content
+
+Page copy, products, services and FAQs are in `src/data/`. Contact details, hours and the WhatsApp number are in `src/data/company.ts`.
+
+## Hosting
+
+This is a single-page app, so the host must serve `index.html` for every route (Netlify `_redirects`, Vercel rewrites, or an equivalent rule).

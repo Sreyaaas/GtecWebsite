@@ -1,11 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="14" fill="#173b59"/>
-  <!-- Vertical elevator shaft lines -->
-  <path d="M18 12V52" stroke="#c58a42" stroke-width="3" stroke-linecap="round"/>
-  <path d="M46 12V52" stroke="#c58a42" stroke-width="3" stroke-linecap="round"/>
-  <!-- Modern Geometric G / Elevator Car -->
-  <rect x="24" y="20" width="16" height="24" rx="4" fill="#f6f7f8" stroke="#c58a42" stroke-width="2.5"/>
-  <!-- Moving indicator arrows -->
-  <path d="M32 26L28 30H36L32 26Z" fill="#173b59"/>
-  <path d="M32 38L36 34H28L32 38Z" fill="#c58a42"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="29 -1 42 42">
+  <polygon points="31,19 50,0 57,7 54.5,9.5 50,5 36,19" fill="#DE1F26"/>
+  <polygon points="51,19 60,10 69,19 64,19 60,15 56,19" fill="#DE1F26"/>
+  <polygon points="31,21 50,40 69,21 64,21 50,35 36,21" fill="#38A548"/>
 </svg>

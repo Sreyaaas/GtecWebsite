@@ -1,477 +1,241 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, CheckCircle2, ChevronDown, ChevronUp, ShieldCheck } from 'lucide-react';
 import { productCategories } from '../data/products';
-import { faqsData } from '../data/faq';
-import { EngineeringDetailStrip } from '../components/EngineeringDetailStrip';
-import { EnquiryAssistant, EnquirySelections } from '../components/EnquiryAssistant';
-import { ContactQuotationForm } from '../components/ContactQuotationForm';
+import { servicesData } from '../data/services';
+import { companyData, telHref, whatsappHref } from '../data/company';
+import { QuoteForm } from '../components/QuoteForm';
+import { Faq } from '../components/Faq';
+import { usePageTitle } from '../lib/usePageTitle';
+
+const reasons = [
+  {
+    title: 'Advice before you build',
+    text: 'We review your drawings at the planning stage, so the shaft, pit, headroom and power supply are right the first time.',
+  },
+  {
+    title: 'Our own installation teams',
+    text: 'Trained GTEC technicians install, test and commission every elevator, and coordinate the inspection needed for handover.',
+  },
+  {
+    title: 'Support long after handover',
+    text: 'Maintenance contracts, genuine spare parts and modernisation from our Dammam office, for the life of the equipment.',
+  },
+];
 
 export const HomePage: React.FC = () => {
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [enquiryInitial, setEnquiryInitial] = useState<Partial<EnquirySelections>>({});
-
-  const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index);
-  };
-
-  const handleEnquiryAssistantComplete = (selections: EnquirySelections) => {
-    setEnquiryInitial(selections);
-    const formEl = document.getElementById('quotation-section');
-    if (formEl) {
-      formEl.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const workflowStages = [
-    {
-      num: '01',
-      title: 'Understand',
-      desc: 'Gather building plans, shaft dimensions, traffic expectations, and regulatory requirements.',
-    },
-    {
-      num: '02',
-      title: 'Plan',
-      desc: 'Define elevator category, drive specifications, door configurations, and structural allowances.',
-    },
-    {
-      num: '03',
-      title: 'Coordinate',
-      desc: 'Align hoistway provisions, pit depth, electrical supply, and construction timelines with the project team.',
-    },
-    {
-      num: '04',
-      title: 'Install',
-      desc: 'Deliver disciplined on-site mechanical alignment of guide rails, car sling, door headers, and machine mounting.',
-    },
-    {
-      num: '05',
-      title: 'Commission',
-      desc: 'Conduct load-balance checks, over-speed governor trips, door interlock tests, and safety certification.',
-    },
-    {
-      num: '06',
-      title: 'Support',
-      desc: 'Provide scheduled preventative maintenance, technical callout response, and genuine replacement components.',
-    },
-  ];
+  usePageTitle();
+  const featured = productCategories.slice(0, 2);
+  const others = productCategories.slice(2);
 
   return (
-    <div className="flex flex-col w-full bg-[#fbfbfa]">
-      {/* 1. ARCHITECTURAL HERO SECTION - Professional Corporate Focus */}
-      <section className="bg-white border-b border-[#ded8d8] pt-12 pb-16 lg:py-24 relative overflow-hidden">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Left Column: Authentic Copy & CTAs */}
-            <div className="lg:col-span-6 flex flex-col justify-center">
-              <span className="text-xs uppercase tracking-[0.2em] text-[#9B1D20] font-bold block mb-4">
-                Global Team Elevator Co. · Established 2007
-              </span>
-
-              <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-semibold text-[#1c151d] tracking-tight leading-[1.10] mb-6">
-                Moving people. <br />
-                <span className="text-[#9B1D20]">Connecting spaces.</span>
-              </h1>
-
-              <p className="text-base sm:text-lg text-[#3d353c] leading-relaxed mb-8 max-w-xl font-normal">
-                Elevator and escalator solutions designed around your building, your requirements, and the people who use them across Saudi Arabia.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-4">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-white bg-[#9B1D20] hover:bg-[#7a1618] active:bg-[#661215] rounded transition-all shadow-sm group"
-                >
-                  <span>Request a Quotation</span>
-                  <ArrowUpRight className="w-4 h-4 text-[#D0FFCE] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
-
-                <Link
-                  to="/products"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-[#1c151d] bg-white hover:bg-[#f1efef] border border-[#dcd7d6] rounded transition-colors shadow-2xs"
-                >
-                  <span>Explore Our Products</span>
-                  <ArrowRight className="w-4 h-4 text-[#635D5C]" />
-                </Link>
-              </div>
-
-              <div className="mt-10 pt-6 border-t border-[#ded8d8] flex flex-wrap items-center gap-6 text-sm text-[#574f56]">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-[#9B1D20] shrink-0" />
-                  <span className="font-medium text-[#1c151d]">Licensed Saudi Contractor · Dammam HQ</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#1d4013] shrink-0" />
-                  <span className="font-medium text-[#1c151d]">SASO & Saudi Building Code Compliance</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column: Architectural Photography */}
-            <div className="lg:col-span-6">
-              <div className="rounded-lg border border-[#ded8d8] overflow-hidden shadow-sm aspect-[16/11] bg-[#161017] relative">
-                <img
-                  src="/images/landing-minimalist.jpg"
-                  alt="Architectural elevator landing with satin stainless steel doors, floor indicator, and limestone floor"
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                  fetchPriority="high"
-                />
-                <div className="absolute bottom-0 inset-x-0 bg-[#161017]/90 backdrop-blur-md px-5 py-3.5 text-xs text-white flex items-center justify-between border-t border-[#382739]">
-                  <span className="font-semibold text-white tracking-wider uppercase text-[11px] font-mono">
-                    Vertical Transportation Engineering
-                  </span>
-                  <span className="text-[#dcd4dc] text-xs font-mono">
-                    Operating in Saudi Arabia
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. COMPANY OVERVIEW SECTION */}
-      <section className="py-16 lg:py-24 bg-[#fbfbfa] border-b border-[#ded8d8]">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-            <div className="lg:col-span-5">
-              <span className="text-xs uppercase tracking-[0.2em] text-[#9B1D20] font-bold block mb-2">
-                Company Overview
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-semibold text-[#1c151d] tracking-tight leading-snug">
-                Engineering vertical transportation since 2007.
-              </h2>
-              <div className="mt-6">
-                <Link
-                  to="/about"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#9B1D20] hover:text-[#7a1618] transition-colors"
-                >
-                  <span>Discover GTEC Capabilities</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7 flex flex-col gap-8">
-              <p className="text-base sm:text-lg text-[#2e272e] leading-relaxed font-normal">
-                Global Team Elevator Co. brings together elevator and escalator design, manufacturing, sales, installation, and maintenance. Our focus is on delivering solutions that respond to building requirements and supporting customers throughout the project lifecycle.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-[#ded8d8]">
-                <div className="border-l-2 border-[#9B1D20] pl-4">
-                  <h3 className="text-sm font-bold text-[#1c151d] mb-1.5">
-                    Integrated Solutions
-                  </h3>
-                  <p className="text-sm text-[#574f56] leading-relaxed">
-                    Elevator and escalator solutions designed around specific building usage and passenger flow.
-                  </p>
-                </div>
-
-                <div className="border-l-2 border-[#3D2B3D] pl-4">
-                  <h3 className="text-sm font-bold text-[#1c151d] mb-1.5">
-                    Installation & Commissioning
-                  </h3>
-                  <p className="text-sm text-[#574f56] leading-relaxed">
-                    Precision mechanical rail alignment, safety certification, and full compliance with Saudi codes.
-                  </p>
-                </div>
-
-                <div className="border-l-2 border-[#1d4013] pl-4">
-                  <h3 className="text-sm font-bold text-[#1c151d] mb-1.5">
-                    Ongoing Maintenance
-                  </h3>
-                  <p className="text-sm text-[#574f56] leading-relaxed">
-                    Preventative service schedules, routine diagnostic checks, and dependable after-sales technical support.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. PRODUCT CATEGORIES SHOWCASE */}
-      <section className="py-16 lg:py-24 bg-white border-b border-[#ded8d8]" id="products-showcase">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-            <div>
-              <span className="text-xs uppercase tracking-[0.2em] text-[#9B1D20] font-bold block mb-2">
-                Elevator Categories
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-semibold text-[#1c151d] tracking-tight">
-                Architectural & Engineered Solutions
-              </h2>
-            </div>
-            <p className="text-sm sm:text-base text-[#574f56] max-w-md font-medium">
-              Five core product categories engineered for residential, commercial, industrial, and high-traffic public environments in Saudi Arabia.
+    <>
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-line">
+        <div className="wrap grid lg:grid-cols-12 lg:min-h-[640px]">
+          <div className="flex flex-col justify-center py-14 lg:col-span-7 lg:py-24 lg:pr-16">
+            <p className="text-[0.95rem] text-steel">Global Team Elevator Co., Dammam</p>
+            <h1 className="mt-5 max-w-[15ch] text-[2.5rem] sm:text-[3.25rem] lg:text-[3.5rem]">
+              Elevators designed, installed and maintained by one team.
+            </h1>
+            <p className="lead mt-6 max-w-xl">
+              Passenger, villa, panoramic and freight elevators and escalators for buildings across Saudi Arabia,
+              with maintenance that continues long after handover.
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {productCategories.map((product) => (
-              <div
-                key={product.id}
-                className="bg-white rounded-lg border border-[#ded8d8] overflow-hidden flex flex-col hover:border-[#9B1D20]/60 transition-all shadow-xs hover:shadow-md"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden bg-[#161017]">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute bottom-3 left-3 bg-[#161017]/85 backdrop-blur-xs text-[#D0FFCE] text-[11px] font-mono tracking-wider px-3 py-1 border border-[#382739]">
-                    {product.eyebrow}
-                  </div>
-                </div>
-
-                <div className="p-6 flex flex-col flex-1 justify-between">
-                  <div>
-                    <h3 className="text-xl font-semibold text-[#1c151d] mb-2">
-                      {product.title}
-                    </h3>
-                    <p className="text-sm text-[#574f56] leading-relaxed mb-4">
-                      {product.description}
-                    </p>
-
-                    <div className="py-2.5 px-3 bg-[#f3fbf0] rounded-lg border border-[#b8e59e] mb-5 text-xs text-[#1d4013]">
-                      <span className="font-semibold text-[#1c151d]">Application: </span>
-                      {product.application}
-                    </div>
-                  </div>
-
-                  <Link
-                    to={`/products/${product.slug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#9B1D20] hover:text-[#7a1618] transition-colors pt-3 border-t border-[#ded8d8]"
-                  >
-                    <span>View Solution Details</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-[#9B1D20]" />
-                  </Link>
-                </div>
-              </div>
-            ))}
-
-            {/* Custom Engineering Consultation Block */}
-            <div className="bg-[#201721] text-white rounded-lg p-6 sm:p-8 border border-[#382739] flex flex-col justify-between shadow-sm">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link to="/contact" className="btn btn-primary">Request a quote</Link>
+              <a href={telHref(companyData.phone)} className="btn btn-secondary">Call {companyData.phone}</a>
+            </div>
+            <dl className="mt-12 grid grid-cols-1 gap-y-4 border-t border-line pt-6 text-[0.95rem] sm:grid-cols-3 sm:gap-x-6">
               <div>
-                <span className="text-[11px] uppercase tracking-[0.16em] text-[#CBEFB6] font-bold block mb-2">
-                  Tailored Engineering
-                </span>
-                <h3 className="text-2xl font-semibold mb-3 text-white">
-                  Custom Hoistway or Special Dimensions?
-                </h3>
-                <p className="text-sm text-[#dcd4dc] leading-relaxed mb-6">
-                  Our engineering office works directly from architectural CAD and structural plans to accommodate non-standard shaft configurations, low pit constraints, and unique car interior designs.
-                </p>
+                <dt className="font-medium text-ink">Since 2007</dt>
+                <dd className="text-steel-light">Based in Dammam</dd>
               </div>
-
-              <div className="pt-4 border-t border-[#382739]">
-                <Link
-                  to="/contact"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 bg-[#9B1D20] hover:bg-[#7a1618] text-white text-xs font-semibold rounded transition-colors shadow-sm"
-                >
-                  <span>Submit Building Drawings</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#D0FFCE]" />
-                </Link>
+              <div>
+                <dt className="font-medium text-ink">SASO and EN 81</dt>
+                <dd className="text-steel-light">Compliant equipment</dd>
               </div>
-            </div>
+              <div>
+                <dt className="font-medium text-ink">Kingdom-wide</dt>
+                <dd className="text-steel-light">Supply and installation</dd>
+              </div>
+            </dl>
+          </div>
+          <div className="relative -mx-5 aspect-[4/3] md:-mx-8 lg:absolute lg:inset-y-0 lg:right-0 lg:left-[56%] lg:mx-0 lg:aspect-auto">
+            <img
+              src="/images/elevator-interior-real.jpg"
+              alt="Brushed stainless steel elevator cabin with its doors open"
+              className="h-full w-full object-cover object-[50%_60%]"
+              fetchPriority="high"
+            />
           </div>
         </div>
       </section>
 
-      {/* 4. ENGINEERING DETAIL STRIP */}
-      <EngineeringDetailStrip />
-
-      {/* 5. WHY GTEC — CLEAN STRUCTURED LAYOUT */}
-      <section className="py-16 lg:py-24 bg-white border-b border-[#ded8d8]">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-12">
-            <span className="text-xs uppercase tracking-[0.2em] text-[#9B1D20] font-bold block mb-2">
-              Why GTEC
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-semibold text-[#1c151d] tracking-tight">
-              A considered approach to every building.
-            </h2>
-            <p className="text-base text-[#574f56] mt-3">
-              Founded in 2007, Global Team Elevator Co. balances established engineering practices with disciplined on-site execution across the Kingdom.
-            </p>
+      {/* Products */}
+      <section className="section">
+        <div className="wrap">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <h2 className="text-[2rem] sm:text-[2.75rem]">What we install</h2>
+              <p className="lead mt-4">
+                From a single home lift to every elevator in a tower, each system is specified for the building it serves.
+              </p>
+            </div>
+            <Link to="/products" className="text-link shrink-0">See all products</Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 divide-y lg:divide-y-0 lg:divide-x divide-[#ded8d8]">
-            <div className="pt-6 lg:pt-0 lg:pr-6">
-              <span className="text-xs font-mono font-bold text-[#9B1D20] block mb-2">01</span>
-              <h3 className="text-base font-semibold text-[#1c151d] mb-2">
-                Modern Technologies
-              </h3>
-              <p className="text-sm text-[#574f56] leading-relaxed">
-                GTEC describes its approach as incorporating established elevator technologies and technical experience into its solutions.
-              </p>
-            </div>
-
-            <div className="pt-6 lg:pt-0 lg:px-6">
-              <span className="text-xs font-mono font-bold text-[#9B1D20] block mb-2">02</span>
-              <h3 className="text-base font-semibold text-[#1c151d] mb-2">
-                Quality Focus
-              </h3>
-              <p className="text-sm text-[#574f56] leading-relaxed">
-                Product quality and dependable service are central to the company's stated approach, from component selection to final handover.
-              </p>
-            </div>
-
-            <div className="pt-6 lg:pt-0 lg:px-6">
-              <span className="text-xs font-mono font-bold text-[#9B1D20] block mb-2">03</span>
-              <h3 className="text-base font-semibold text-[#1c151d] mb-2">
-                Energy-Conscious Engineering
-              </h3>
-              <p className="text-sm text-[#574f56] leading-relaxed">
-                GTEC highlights technologies intended to reduce energy consumption and support quieter operation. Specific savings depend on selected equipment.
-              </p>
-            </div>
-
-            <div className="pt-6 lg:pt-0 lg:pl-6">
-              <span className="text-xs font-mono font-bold text-[#9B1D20] block mb-2">04</span>
-              <h3 className="text-base font-semibold text-[#1c151d] mb-2">
-                Installation & Reliability
-              </h3>
-              <p className="text-sm text-[#574f56] leading-relaxed">
-                The company identifies professional on-site installation and certified commissioning as part of its core service offering.
-              </p>
-            </div>
+          <div className="mt-12 grid gap-x-8 gap-y-14 md:grid-cols-2">
+            {featured.map((p) => (
+              <ProductTile key={p.id} product={p} large />
+            ))}
+          </div>
+          <div className="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-3">
+            {others.map((p) => (
+              <ProductTile key={p.id} product={p} />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 6. TECHNICAL APPROACH — PROCESS FLOW */}
-      <section className="py-16 lg:py-24 bg-[#fbfbfa] border-b border-[#ded8d8]">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-12">
-            <span className="text-xs uppercase tracking-[0.2em] text-[#9B1D20] font-bold block mb-2">
-              Project Execution
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-semibold text-[#1c151d] tracking-tight">
-              Technical Approach
-            </h2>
-            <p className="text-base text-[#574f56] mt-2">
-              Illustrative project workflow from initial architectural assessment through to ongoing maintenance.
-            </p>
+      {/* Process */}
+      <section className="section bg-mist">
+        <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-28">
+              <h2 className="text-[2rem] sm:text-[2.75rem]">One contractor, from drawings to decades of service</h2>
+              <p className="lead mt-5">
+                You deal with the same company at every stage, so nothing is lost between the designer, the supplier
+                and the maintenance team.
+              </p>
+              <Link to="/services" className="text-link mt-7 inline-block">How we work</Link>
+            </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {workflowStages.map((stage) => (
-              <div
-                key={stage.num}
-                className="bg-white p-6 rounded-lg border border-[#ded8d8] flex flex-col justify-between shadow-2xs hover:border-[#9B1D20]/40 transition-colors"
-              >
+          <ol className="lg:col-span-7 border-t border-line">
+            {servicesData.map((s, i) => (
+              <li key={s.id} className="grid grid-cols-[3rem_1fr] gap-x-4 border-b border-line py-7">
+                <span className="text-lg text-brand tabular-nums">{String(i + 1).padStart(2, '0')}</span>
                 <div>
-                  <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#ded8d8]">
-                    <span className="text-xs font-mono font-bold text-[#9B1D20]">
-                      PHASE {stage.num}
-                    </span>
-                    <span className="text-xs text-[#574f56] font-medium uppercase">Workflow</span>
-                  </div>
-                  <h3 className="text-lg font-semibold text-[#1c151d] mb-2">
-                    {stage.title}
-                  </h3>
-                  <p className="text-sm text-[#574f56] leading-relaxed">
-                    {stage.desc}
-                  </p>
+                  <h3 className="text-xl">{s.title}</h3>
+                  <p className="mt-2">{s.shortDescription}</p>
                 </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Maintenance */}
+      <section className="bg-ink text-white/80">
+        <div className="wrap grid lg:grid-cols-2">
+          <div className="py-16 lg:py-24 lg:pr-16">
+            <h2 className="text-[2rem] text-white sm:text-[2.75rem]">Already have elevators? We can look after them.</h2>
+            <p className="lead mt-5 !text-white/75">
+              A GTEC maintenance contract covers scheduled safety checks, inspection and lubrication, controller
+              diagnostics and breakdown call-outs, so your elevators stay safe and your tenants are not left waiting.
+            </p>
+            <ul className="mt-8 space-y-3 text-[1rem]">
+              <li className="border-l border-white/25 pl-4">Preventive maintenance on a fixed schedule</li>
+              <li className="border-l border-white/25 pl-4">Genuine spare parts held in the Eastern Province</li>
+              <li className="border-l border-white/25 pl-4">Modernisation of older controllers, doors and cabins</li>
+            </ul>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <Link to="/contact?need=Maintenance%20contract" className="btn btn-on-dark">Ask about maintenance</Link>
+              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-outline-on-dark">
+                WhatsApp us
+              </a>
+            </div>
+          </div>
+          <div className="relative -mx-5 aspect-[4/3] md:-mx-8 lg:mx-0 lg:aspect-auto lg:-mr-[max(0px,calc((100vw-1200px)/2+32px))]">
+            <img
+              src="/images/elevator-stainless-real.jpg"
+              alt="Elevator floor indicator on a stainless steel landing wall"
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Reasons */}
+      <section className="section">
+        <div className="wrap">
+          <h2 className="max-w-2xl text-[2rem] sm:text-[2.75rem]">Why owners and consultants work with GTEC</h2>
+          <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-12">
+            {reasons.map((r) => (
+              <div key={r.title} className="border-t-2 border-ink pt-6">
+                <h3 className="text-xl">{r.title}</h3>
+                <p className="mt-3">{r.text}</p>
               </div>
             ))}
           </div>
-
-          <div className="mt-8 text-xs text-[#635D5C] text-center italic">
-            * Note: Illustrated as a representative project sequence. Exact milestones align with site conditions and agreed contractual terms.
-          </div>
         </div>
       </section>
 
-      {/* 7. INTERACTIVE ENQUIRY ASSISTANT & QUOTATION SECTION */}
-      <section className="py-16 lg:py-24 bg-white border-b border-[#ded8d8]" id="quotation-section">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12">
-            <span className="text-xs uppercase tracking-[0.2em] text-[#9B1D20] font-bold block mb-2">
-              Direct Enquiry Journey
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-semibold text-[#1c151d] tracking-tight">
-              Let's discuss your next project.
-            </h2>
-            <p className="text-base text-[#574f56] mt-2 leading-relaxed">
-              Share your building requirements with our engineering team to start a conversation about the right vertical transportation solution.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Step Selector Assistant - Col Span 5 */}
-            <div className="lg:col-span-5">
-              <EnquiryAssistant
-                onComplete={handleEnquiryAssistantComplete}
-              />
-
-              <div className="mt-4 p-4 rounded-lg bg-[#f3fbf0] border border-[#b8e59e] text-xs text-[#1d4013]">
-                <span className="font-semibold block mb-1">Specification Coordination:</span>
-                Selecting your project parameters automatically populates your quotation inquiry form on the right, ensuring your building requirements are delivered accurately.
-              </div>
-            </div>
-
-            {/* Direct Form - Col Span 7 */}
-            <div className="lg:col-span-7">
-              <ContactQuotationForm
-                initialData={enquiryInitial}
-              />
+      {/* Quote */}
+      <section id="quote" className="section bg-mist scroll-mt-20">
+        <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <h2 className="text-[2rem] sm:text-[2.75rem]">Request a quotation</h2>
+            <p className="lead mt-5">Tell us a little about the project. There is no cost and no obligation.</p>
+            <h3 className="mt-10 text-lg">What happens next</h3>
+            <ol className="mt-4 space-y-4">
+              {[
+                'Our sales team contacts you to understand the project.',
+                'An engineer reviews your drawings or arranges a site visit.',
+                'You receive a detailed written quotation.',
+              ].map((t, i) => (
+                <li key={t} className="grid grid-cols-[1.75rem_1fr]">
+                  <span className="text-brand tabular-nums">{i + 1}.</span>
+                  <span>{t}</span>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-10 border-t border-line pt-6 text-[0.95rem]">
+              <p className="text-ink font-medium">Prefer to talk?</p>
+              <p className="mt-1">
+                Call <a href={telHref(companyData.phone)} className="text-link">{companyData.phone}</a>
+                <br />
+                or WhatsApp{' '}
+                <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="text-link">
+                  {companyData.mobile}
+                </a>
+              </p>
+              <p className="mt-2 text-steel-light">{companyData.hours}</p>
             </div>
           </div>
+          <div className="lg:col-span-8 border border-line bg-white p-6 sm:p-10">
+            <QuoteForm idPrefix="home" />
+          </div>
         </div>
       </section>
 
-      {/* 8. FREQUENTLY ASKED QUESTIONS */}
-      <section className="py-16 lg:py-24 bg-[#fbfbfa]">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-12">
-            <span className="text-xs uppercase tracking-[0.2em] text-[#9B1D20] font-bold block mb-2">
-              Buyer Questions
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-semibold text-[#1c151d] tracking-tight">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-base text-[#574f56] mt-2 leading-relaxed">
-              Clear answers regarding elevator selection, architectural coordination, installation, and preventative maintenance in Saudi Arabia.
+      {/* FAQ */}
+      <section className="section">
+        <div className="wrap grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <h2 className="text-[2rem] sm:text-[2.75rem]">Common questions</h2>
+            <p className="mt-4">
+              Can’t find your answer? Email{' '}
+              <a href={`mailto:${companyData.email}`} className="text-link">{companyData.email}</a>
             </p>
           </div>
-
-          <div className="max-w-3xl space-y-3">
-            {faqsData.map((faq, idx) => {
-              const isOpen = openFaq === idx;
-              return (
-                <div
-                  key={idx}
-                  className="border border-[#ded8d8] rounded-lg overflow-hidden bg-white shadow-2xs"
-                >
-                  <button
-                    type="button"
-                    onClick={() => toggleFaq(idx)}
-                    className="w-full py-4 px-5 sm:px-6 text-left flex items-center justify-between gap-4 focus:outline-none focus:bg-[#fbfbfa]"
-                  >
-                    <span className="text-base font-semibold text-[#1c151d]">
-                      {faq.question}
-                    </span>
-                    <span className="text-[#9B1D20] shrink-0">
-                      {isOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
-                    </span>
-                  </button>
-
-                  {isOpen && (
-                    <div className="px-5 sm:px-6 pb-5 pt-1 text-sm text-[#574f56] leading-relaxed border-t border-[#ded8d8] bg-[#fbfbfa]">
-                      {faq.answer}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+          <div className="lg:col-span-8">
+            <Faq />
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 };
+
+const ProductTile: React.FC<{ product: (typeof productCategories)[number]; large?: boolean }> = ({ product, large }) => (
+  <Link to={`/products/${product.slug}`} className="group block">
+    <div className={`overflow-hidden bg-mist ${large ? 'aspect-[4/3]' : 'aspect-[4/3] md:aspect-[4/5]'}`}>
+      <img src={product.image} alt={product.imageAlt} className="h-full w-full object-cover" loading="lazy" />
+    </div>
+    <h3 className={`mt-5 ${large ? 'text-2xl' : 'text-xl'} group-hover:text-brand transition-colors`}>
+      {product.title}
+    </h3>
+    <p className="mt-2 max-w-md">{product.summary}</p>
+  </Link>
+);

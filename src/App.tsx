@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
+import { MobileActionBar } from './components/MobileActionBar';
 
 import { HomePage } from './pages/HomePage';
 import { ProductsPage } from './pages/ProductsPage';
@@ -15,9 +16,15 @@ export function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="flex flex-col min-h-screen bg-[#f6f7f8] text-[#17212b]">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-white focus:px-4 focus:py-2 focus:text-ink"
+      >
+        Skip to content
+      </a>
+      <div className="flex min-h-screen flex-col">
         <Header />
-        <main className="flex-1 w-full">
+        <main id="main" className="flex-1">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/products" element={<ProductsPage />} />
@@ -30,6 +37,7 @@ export function App() {
           </Routes>
         </main>
         <Footer />
+        <MobileActionBar />
       </div>
     </Router>
   );

@@ -1,102 +1,95 @@
 export interface ServiceItem {
   id: string;
-  slug: string;
   title: string;
-  eyebrow: string;
   shortDescription: string;
   scope: string[];
-  engineeringFocus: string;
+  note: string;
 }
 
+/** The project lifecycle, in the order the work happens on site. */
 export const servicesData: ServiceItem[] = [
   {
     id: 'design',
-    slug: 'elevator-design',
-    title: 'Elevator Design',
-    eyebrow: 'PHASE 01 · ENGINEERING & SPECIFICATION',
-    shortDescription: 'Technical planning, shaft sizing, traffic analysis, and interior finishes tailored to your architectural plans.',
+    title: 'Design and specification',
+    shortDescription:
+      'Traffic analysis, shaft sizing and cabin finishes worked out from your architectural drawings.',
     scope: [
-      'Traffic flow calculation and waiting-interval modeling based on building occupancy',
-      'Structural shaft layout coordination, pit dimensions, and headroom optimization',
-      'Power supply, heat dissipation, and electrical supply specification',
-      'Architectural cabin finishes, lighting integration, and fixture customization',
-      'Code compliance review under Saudi Building Code and international elevator standards',
+      'Traffic and waiting-time calculations based on building occupancy',
+      'Shaft layout, pit depth and headroom coordination with your consultant',
+      'Power supply, heat load and electrical specification',
+      'Cabin finishes, lighting and fixture selection',
+      'Review against the Saudi Building Code and international elevator standards',
     ],
-    engineeringFocus: 'Early collaboration with architects, consultants, and developers ensures the right equipment capacity and hoistway dimensions before structural concrete is poured.',
+    note: 'Agreeing capacity and shaft dimensions before the concrete is poured avoids costly changes on site.',
   },
   {
     id: 'supply',
-    slug: 'manufacturing-supply',
-    title: 'Manufacturing & Supply',
-    eyebrow: 'PHASE 02 · EQUIPMENT PROCUREMENT',
-    shortDescription: 'Sourcing and supply of high-grade elevator systems and precision components from certified manufacturing partners.',
+    title: 'Manufacturing and supply',
+    shortDescription:
+      'Elevator systems and components sourced from certified manufacturing partners and checked before shipment.',
     scope: [
-      'Permanent magnet synchronous gearless traction machines and energy-efficient drives',
-      'Microprocessor controller cabinets and safety-rated operational circuit boards',
-      'Precision machined elevator guide rails, counterweight frames, and high-strength suspension cables',
-      'Automatic car and landing door operators with variable speed frequency control',
-      'Comprehensive factory acceptance checks prior to shipment to site',
+      'Gearless permanent-magnet traction machines and energy-efficient drives',
+      'Microprocessor controllers and safety circuit boards',
+      'Guide rails, counterweight frames and suspension ropes',
+      'Automatic car and landing door operators',
+      'Factory acceptance checks before dispatch to site',
     ],
-    engineeringFocus: 'Rigorous component selection ensures mechanical longevity, acoustic quietness, and consistent supply chain delivery matching project construction milestones.',
+    note: 'Deliveries are scheduled against your construction programme so equipment arrives when the shaft is ready.',
   },
   {
     id: 'installation',
-    slug: 'installation',
     title: 'Installation',
-    eyebrow: 'PHASE 03 · ON-SITE EXECUTION',
-    shortDescription: 'Disciplined mechanical and electrical installation carried out by trained technicians under strict safety protocols.',
+    shortDescription:
+      'Mechanical and electrical installation by trained technicians working to strict site safety procedures.',
     scope: [
-      'Shaft plumbing, laser alignment of guide rails, and bracket anchorage verification',
-      'Assembly of car frame, safety gear mechanism, and vibration-isolating sling mounts',
-      'Overhead machine mounting, hoist rope suspension, and counterweight balancing',
-      'Door mechanism positioning, landing sills leveling, and optical safety curtain wiring',
-      'Shaft wiring, traveling cable installation, and machine room electrical termination',
+      'Shaft survey and laser alignment of guide rails',
+      'Car frame, safety gear and isolation mounts',
+      'Machine mounting, rope suspension and counterweight balancing',
+      'Door headers, landing sills and safety light curtains',
+      'Shaft wiring, travelling cables and controller termination',
     ],
-    engineeringFocus: 'Precision alignment during installation is critical to smooth ride quality, reduced mechanical friction, and prolonged component lifespan.',
+    note: 'Accurate alignment at installation is what gives a quiet, smooth ride for years afterwards.',
   },
   {
     id: 'commissioning',
-    slug: 'commissioning',
-    title: 'Commissioning',
-    eyebrow: 'PHASE 04 · QUALITY & SAFETY VERIFICATION',
-    shortDescription: 'Multi-point testing, load checks, speed governor tests, and safety verification prior to formal handover.',
+    title: 'Testing and handover',
+    shortDescription:
+      'Load tests, governor and safety-gear tests and full safety checks before the elevator is handed over.',
     scope: [
-      'Over-speed governor tripping and safety gear wedge engagement testing under full load',
-      'Buffer compression, limit switch verification, and door interlock safety circuits',
-      'Vibration, acceleration, and deceleration ride quality analysis',
-      'Automatic Rescue Device (ARD) and emergency battery power lowering verification',
-      'Coordination with civil defense and statutory inspection authorities for licensing handover',
+      'Over-speed governor and safety-gear tests under full load',
+      'Buffer, limit switch and door interlock checks',
+      'Ride quality checks for vibration, acceleration and levelling',
+      'Automatic rescue device and emergency battery lowering tests',
+      'Coordination with Civil Defense and inspection authorities for licensing',
     ],
-    engineeringFocus: 'Systematic testing protocols ensure full compliance with regulatory safety requirements and guarantee that the equipment performs reliably from day one.',
+    note: 'Every unit is tested and documented before it carries its first passenger.',
   },
   {
     id: 'maintenance',
-    slug: 'maintenance',
-    title: 'Maintenance',
-    eyebrow: 'PHASE 05 · PREVENTATIVE CARE',
-    shortDescription: 'Scheduled preventative maintenance programs designed to safeguard operational reliability and passenger safety.',
+    title: 'Maintenance contracts',
+    shortDescription:
+      'Scheduled preventive maintenance that keeps elevators safe, reliable and running smoothly.',
     scope: [
-      'Regular lubrication, brake gap inspection, and guide rail cleaning routines',
-      'Door operator belt tension, roller guide wear, and contact wear assessments',
-      'Microprocessor diagnostic memory review to identify and prevent potential faults early',
-      'Traction rope tension balancing and suspension system integrity audits',
-      'Dedicated technical callout assistance for registered service agreements',
+      'Lubrication, brake inspection and guide rail cleaning',
+      'Door operator, roller guide and contact wear checks',
+      'Controller fault-log review to catch problems early',
+      'Rope tension and suspension inspections',
+      'Breakdown call-outs for contract customers',
     ],
-    engineeringFocus: 'Preventative maintenance keeps equipment operating at peak efficiency, minimizing downtime and extending the lifecycle of building transportation assets.',
+    note: 'Regular servicing reduces breakdowns and extends the working life of the equipment.',
   },
   {
     id: 'after-sales',
-    slug: 'after-sales-support',
-    title: 'After-Sales Support',
-    eyebrow: 'PHASE 06 · CONTINUOUS LIFECYCLE',
-    shortDescription: 'Long-term support, genuine replacement parts availability, and modernization consultancy as building needs evolve.',
+    title: 'Repairs and modernisation',
+    shortDescription:
+      'Genuine spare parts, repairs and upgrades for older elevators as your building’s needs change.',
     scope: [
-      'Inventory of genuine spare parts and electrical components for rapid availability',
-      'Building modernization assessments for older elevator systems requiring controller upgrades',
-      'Interior cab refurbishment, modern LED lighting conversions, and architectural cladding updates',
-      'Energy-efficiency retrofits with variable-frequency regenerative drives',
-      'Direct technical guidance for facility management teams and property owners',
+      'Stock of genuine spare parts and electrical components',
+      'Modernisation surveys for older controllers and drives',
+      'Cabin refurbishment and LED lighting upgrades',
+      'Energy-saving drive retrofits',
+      'Technical advice for facility managers and owners',
     ],
-    engineeringFocus: 'Ongoing lifecycle engineering support ensures that GTEC installations remain safe, modern, and energy-conscious throughout decades of service.',
+    note: 'Modernising the controller and doors can make an older elevator feel and perform like new.',
   },
 ];
