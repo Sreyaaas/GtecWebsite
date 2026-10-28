@@ -9,7 +9,7 @@ export const ServicesPage: React.FC = () => {
 
   return (
     <>
-      <PageIntro crumbs={[{ label: 'Services' }]} title="From the first drawing to decades of service">
+      <PageIntro crumbs={[{ label: 'Services' }]} title="From the first drawing to decades of service" image="/images/escalator-tread-real.jpg">
         GTEC handles every stage of an elevator’s life. Developers, consultants and contractors deal with one team,
         and building owners have one number to call for as long as the equipment runs.
       </PageIntro>

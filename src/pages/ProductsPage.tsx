@@ -11,7 +11,7 @@ export const ProductsPage: React.FC = () => {
 
   return (
     <>
-      <PageIntro crumbs={[{ label: 'Products' }]} title="Elevators and escalators">
+      <PageIntro crumbs={[{ label: 'Products' }]} title="Elevators and escalators" image="/images/elevator-glass-authentic.jpg" imagePosition="40% 50%">
         Five product families for villas, residential and office buildings, hotels, malls and industrial sites. Every
         system is specified around your building, then installed and maintained by our own teams.
       </PageIntro>

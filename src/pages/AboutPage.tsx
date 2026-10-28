@@ -24,7 +24,7 @@ export const AboutPage: React.FC = () => {
 
   return (
     <>
-      <PageIntro crumbs={[{ label: 'About' }]} title="About Global Team Elevator Co.">
+      <PageIntro crumbs={[{ label: 'About' }]} title="About Global Team Elevator Co." image="/images/elevator-buttons-real.jpg" imagePosition="45% 50%">
         An elevator and escalator contractor founded in Dammam in {companyData.established}, serving developers,
         contractors and building owners across Saudi Arabia.
       </PageIntro>

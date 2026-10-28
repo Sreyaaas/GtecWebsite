@@ -14,7 +14,7 @@ export const ContactPage: React.FC = () => {
 
   return (
     <>
-      <PageIntro crumbs={[{ label: 'Contact' }]} title="Request a quote or talk to our team">
+      <PageIntro crumbs={[{ label: 'Contact' }]} title="Request a quote or talk to our team" image="/images/cabin-lighting.jpg" imagePosition="50% 40%">
         Fill in the form and our sales team will contact you, or reach us directly by phone, WhatsApp or email.
       </PageIntro>
 

@@ -4,6 +4,7 @@ import { productCategories } from '../data/products';
 import { companyData, telHref } from '../data/company';
 import { quoteHref } from '../data/enquiry';
 import { ContactBand } from '../components/ContactBand';
+import { PageIntro } from '../components/PageIntro';
 import { usePageTitle } from '../lib/usePageTitle';
 
 export const ProductDetailPage: React.FC = () => {
@@ -17,34 +18,20 @@ export const ProductDetailPage: React.FC = () => {
 
   return (
     <>
-      <section className="border-b border-line">
-        <div className="wrap grid gap-10 pt-10 pb-14 lg:grid-cols-12 lg:gap-16 lg:pt-14 lg:pb-20 lg:items-center">
-          <div className="lg:col-span-5">
-            <nav aria-label="Breadcrumb" className="text-[0.9rem] text-steel-light">
-              <ol className="flex flex-wrap gap-x-2">
-                <li><Link to="/" className="hover:text-ink">Home</Link></li>
-                <li aria-hidden="true">/</li>
-                <li><Link to="/products" className="hover:text-ink">Products</Link></li>
-                <li aria-hidden="true">/</li>
-                <li aria-current="page">{product.title}</li>
-              </ol>
-            </nav>
-            <h1 className="mt-6 text-[2.5rem] sm:text-5xl">{product.title}</h1>
-            <p className="lead mt-6">{product.description}</p>
-            <p className="mt-6 text-[0.95rem]">
-              <span className="font-medium text-ink">Suited to: </span>
-              {product.application}
-            </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link to={quoteHref(product.slug)} className="btn btn-primary">Request a quote</Link>
-              <a href={telHref(companyData.phone)} className="btn btn-secondary">Call {companyData.phone}</a>
-            </div>
-          </div>
-          <div className="lg:col-span-7 aspect-[4/3] overflow-hidden bg-mist">
-            <img src={product.image} alt={product.imageAlt} className="h-full w-full object-cover" fetchPriority="high" />
-          </div>
-        </div>
-      </section>
+      <PageIntro
+        crumbs={[{ label: 'Products', href: '/products' }, { label: product.title }]}
+        title={product.title}
+        image={product.image}
+        actions={
+          <>
+            <Link to={quoteHref(product.slug)} className="btn btn-white">Request a quote</Link>
+            <a href={telHref(companyData.phone)} className="btn btn-outline-on-dark">Call {companyData.phone}</a>
+          </>
+        }
+      >
+        <p>{product.description}</p>
+        <p className="mt-4 text-[0.975rem] text-white/55">Suited to {product.application.toLowerCase()}</p>
+      </PageIntro>
 
       <section className="section">
         <div className="wrap grid gap-14 lg:grid-cols-12 lg:gap-16">

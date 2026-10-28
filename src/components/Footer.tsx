@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-ink text-white/75">
+    <footer className="bg-[#0a1636] text-white/70">
       <div className="wrap py-16 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
