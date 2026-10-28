@@ -182,23 +182,45 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%234a5468' stroke-width='1.6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.9rem center;
-    padding-right: 2.4rem;
+    padding-inline-end: 2.4rem;
   }
 
   .prose-list li {
     position: relative;
-    padding-left: 1.4rem;
+    padding-inline-start: 1.4rem;
   }
   .prose-list li::before {
     content: '';
     position: absolute;
-    left: 0;
+    inset-inline-start: 0;
     top: 0.78em;
     width: 0.5rem;
     height: 1px;
     background: var(--color-brand);
   }
 }
+
+/* ---------- Arabic (right-to-left) ----------
+   Archivo has no Arabic letters, so Arabic headings use IBM Plex Sans Arabic at a heavier weight.
+   Arabic needs no negative tracking and a little more line height. */
+:root[dir='rtl'] {
+  font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', -apple-system, 'Segoe UI', Tahoma, sans-serif;
+}
+:root[dir='rtl'] body { line-height: 1.85; }
+:root[dir='rtl'] :is(h1, h2, h3, h4, .display) {
+  font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', sans-serif;
+  font-stretch: normal;
+  letter-spacing: 0;
+}
+:root[dir='rtl'] :is(h1, h2, .display) { font-weight: 600; }
+:root[dir='rtl'] h1 { line-height: 1.3; }
+:root[dir='rtl'] h2 { line-height: 1.35; }
+:root[dir='rtl'] select.field { background-position: left 0.9rem center; }
+/* Small labels that are headings for structure but not for display. */
+.plain-heading { font-family: inherit !important; font-stretch: normal !important; letter-spacing: 0 !important; font-weight: 500 !important; line-height: 1.4 !important; }
+
+/* The wordmark always stays in the brand typeface. */
+.wordmark { font-family: var(--font-display) !important; font-stretch: 125% !important; letter-spacing: 0.06em !important; font-weight: 600; }
 
 /* ---------- Signature: elevator doors part to reveal the hero ---------- */
 .doors {

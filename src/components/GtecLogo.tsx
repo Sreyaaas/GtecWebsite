@@ -17,18 +17,17 @@ interface GtecLogoProps {
 export const GtecLogo: React.FC<GtecLogoProps> = ({ variant = 'dark', className = '' }) => {
   const light = variant === 'light';
   return (
-    <span className={`inline-flex items-center gap-3 select-none ${className}`}>
+    <span className={`inline-flex items-center gap-3 select-none ${className}`} dir="ltr">
       <GtecMark className="h-10 w-auto shrink-0" />
-      <span className="flex flex-col leading-none">
+      <span className="flex flex-col items-start leading-none" style={{ fontFamily: 'IBM Plex Sans, sans-serif' }}>
         <span
-          className={`display text-[1.5rem] !tracking-[0.06em] transition-colors duration-300 ${
-            light ? 'text-white' : 'text-brand'
-          }`}
-          style={{ fontStretch: '125%', fontWeight: 600 }}
+          className={`wordmark text-[1.5rem] transition-colors duration-300 ${light ? 'text-white' : 'text-brand'}`}
+          dir="ltr"
         >
           GTEC
         </span>
         <span
+          dir="ltr"
           className={`mt-1 text-[0.72rem] tracking-[0.02em] transition-colors duration-300 ${
             light ? 'text-white/70' : 'text-steel'
           }`}
