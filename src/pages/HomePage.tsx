@@ -168,7 +168,9 @@ export const HomePage: React.FC = () => {
         <img
           src="/images/hero-escalator.jpg"
           alt={c.heroAlt}
-          className="absolute inset-0 h-full w-full object-cover object-[65%_50%] rtl:-scale-x-100"
+          className={`absolute inset-0 h-full w-full object-cover object-[65%_50%] rtl:-scale-x-100 ${
+            playDoors ? 'hero-bg-anim' : ''
+          }`}
           fetchPriority="high"
         />
         <div className="absolute inset-0 bg-ink/65 sm:bg-transparent sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l sm:from-ink sm:via-ink/75 sm:to-ink/15" />
@@ -176,8 +178,31 @@ export const HomePage: React.FC = () => {
 
         {playDoors && (
           <div className="doors" aria-hidden="true" dir="ltr">
-            <div className="door door-left" />
-            <div className="door door-right" />
+            {/* Left Door */}
+            <div className="door door-left">
+              <div className="door-panel-inlay" />
+              <div className="door-edge door-edge-left" />
+            </div>
+
+            {/* Right Door */}
+            <div className="door door-right">
+              <div className="door-panel-inlay" />
+              <div className="door-edge door-edge-right" />
+            </div>
+
+            {/* Center Precision Seam */}
+            <div className="doors-center-seam" />
+
+            {/* Architectural Transom Floor Indicator */}
+            <div className="doors-indicator">
+              <div className="doors-indicator-housing">
+                <span className="doors-indicator-arrow" aria-hidden="true">▲</span>
+                <span className="doors-indicator-text">
+                  {locale === 'ar' ? 'GTEC · الدمام' : 'GTEC · DAMMAM'}
+                </span>
+                <span className="doors-indicator-dot" />
+              </div>
+            </div>
           </div>
         )}
 
