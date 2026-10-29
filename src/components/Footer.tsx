@@ -107,7 +107,7 @@ export const Footer: React.FC = () => {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="wrap flex flex-col gap-2 pt-6 pb-24 lg:pb-6 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
+        <div className="wrap flex flex-col gap-2 pt-6 pb-20 sm:pb-6 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © <Ltr>{year}</Ltr> {c.rights}
           </p>

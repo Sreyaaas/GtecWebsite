@@ -163,7 +163,7 @@ export const HomePage: React.FC = () => {
     <>
       {/* Hero */}
       <section
-        className={`on-dark relative h-[100svh] min-h-[640px] max-h-[1000px] overflow-hidden bg-ink ${playDoors ? '' : 'doors-done'}`}
+        className={`on-dark relative min-h-[100dvh] flex flex-col justify-between overflow-hidden bg-ink ${playDoors ? '' : 'doors-done'}`}
       >
         <img
           src="/images/hero-escalator.jpg"
@@ -171,8 +171,8 @@ export const HomePage: React.FC = () => {
           className="absolute inset-0 h-full w-full object-cover object-[65%_50%] rtl:-scale-x-100"
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-ink/55 sm:bg-transparent sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l sm:from-ink sm:via-ink/75 sm:to-ink/10" />
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/90 to-transparent" />
+        <div className="absolute inset-0 bg-ink/65 sm:bg-transparent sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l sm:from-ink sm:via-ink/75 sm:to-ink/15" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/95 to-transparent" />
 
         {playDoors && (
           <div className="doors" aria-hidden="true" dir="ltr">
@@ -181,16 +181,16 @@ export const HomePage: React.FC = () => {
           </div>
         )}
 
-        <div className="wrap relative flex h-full flex-col justify-end pb-10 lg:pb-14">
-          <div className="hero-copy max-w-5xl">
+        <div className="wrap relative z-10 flex flex-1 flex-col justify-between pt-[92px] sm:pt-[108px] lg:pt-[124px] pb-10 sm:pb-12 lg:pb-14">
+          <div className="hero-copy max-w-5xl mt-auto pb-6 sm:pb-8 lg:pb-10">
             <p className="kicker">{c.kicker}</p>
-            <h1 className="mt-6 text-[2.75rem] leading-[0.98] sm:text-[4.25rem] lg:text-[5.25rem] rtl:leading-[1.25]">
+            <h1 className="mt-4 sm:mt-5 text-[2.25rem] leading-[1.05] sm:text-[3.5rem] lg:text-[4.25rem] xl:text-[4.75rem] rtl:text-[2.1rem] rtl:sm:text-[3rem] rtl:lg:text-[3.6rem] rtl:xl:text-[4.15rem] rtl:leading-[1.25]">
               {c.h1a}
               <br />
               {c.h1b}
             </h1>
-            <p className="mt-7 max-w-2xl text-[1.2rem] leading-relaxed text-white/80">{c.heroText}</p>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <p className="mt-5 sm:mt-6 max-w-2xl text-[1.05rem] sm:text-[1.15rem] lg:text-[1.2rem] leading-relaxed text-white/80">{c.heroText}</p>
+            <div className="mt-7 sm:mt-9 flex flex-col gap-3 sm:flex-row">
               <Link to="/contact" className="btn btn-white">{c.quote}</Link>
               <a href={telHref(companyData.phone)} className="btn btn-outline-on-dark">
                 {c.call} <Ltr>{companyData.phone}</Ltr>
@@ -198,11 +198,11 @@ export const HomePage: React.FC = () => {
             </div>
           </div>
 
-          <dl className="hero-copy mt-14 hidden sm:grid grid-cols-3 gap-6 border-t border-white/15 pt-6 text-[0.9rem] sm:text-[0.95rem] lg:mt-20">
+          <dl className="hero-copy hidden sm:grid grid-cols-3 gap-6 border-t border-white/15 pt-5 sm:pt-6 text-[0.85rem] sm:text-[0.95rem]">
             {c.facts.map(([t, d]) => (
               <div key={t}>
-                <dt className="text-white">{t}</dt>
-                <dd className="text-white/55">{d}</dd>
+                <dt className="text-white font-medium">{t}</dt>
+                <dd className="text-white/60 mt-0.5">{d}</dd>
               </div>
             ))}
           </dl>
@@ -234,14 +234,14 @@ export const HomePage: React.FC = () => {
               <Link to="/services" className="text-link mt-4 inline-block">{c.howWeWork}</Link>
             </div>
           </div>
-          <ol className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          <ol className="mt-16 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((s, i) => (
               <li key={s.id} className="border-t border-line pt-6">
-                <span className="display block text-[2.75rem] leading-none text-brand/40 tabular-nums" aria-hidden="true">
+                <span className="display block text-[2.5rem] leading-none text-brand/40 tabular-nums" aria-hidden="true">
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <h3 className="mt-5 text-[1.3rem]">{s.title}</h3>
-                <p className="mt-2">{s.shortDescription}</p>
+                <h3 className="mt-5 text-[1.2rem]">{s.title}</h3>
+                <p className="mt-2 text-[0.95rem]">{s.shortDescription}</p>
               </li>
             ))}
           </ol>
@@ -279,9 +279,9 @@ export const HomePage: React.FC = () => {
 
       {/* Reasons */}
       <section className="bg-mist">
-        <div className="wrap grid gap-12 py-20 lg:grid-cols-12 lg:gap-20 lg:py-28 lg:items-center">
+        <div className="wrap grid gap-10 py-16 lg:grid-cols-12 lg:gap-16 xl:gap-20 lg:py-28 lg:items-center">
           <div className="lg:col-span-5">
-            <div className="aspect-[4/5] overflow-hidden">
+            <div className="aspect-[16/10] sm:aspect-[4/3] lg:aspect-[4/5] overflow-hidden">
               <img
                 src="/images/atrium-escalators.jpg"
                 alt={c.whyAlt}
@@ -291,11 +291,11 @@ export const HomePage: React.FC = () => {
             </div>
           </div>
           <div className="lg:col-span-7">
-            <h2 className="text-[2.25rem] sm:text-[3rem]">{c.whyTitle}</h2>
-            <div className="mt-10 divide-y divide-line border-y border-line">
+            <h2 className="text-[2rem] sm:text-[2.5rem] lg:text-[3rem]">{c.whyTitle}</h2>
+            <div className="mt-8 sm:mt-10 divide-y divide-line border-y border-line">
               {c.reasons.map((r) => (
-                <div key={r.title} className="grid gap-2 py-7 sm:grid-cols-[14rem_1fr] sm:gap-8">
-                  <h3 className="text-[1.2rem]">{r.title}</h3>
+                <div key={r.title} className="grid gap-2 py-6 sm:py-7 sm:grid-cols-[14rem_1fr] sm:gap-8">
+                  <h3 className="text-[1.15rem] sm:text-[1.2rem]">{r.title}</h3>
                   <p>{r.text}</p>
                 </div>
               ))}
@@ -306,12 +306,12 @@ export const HomePage: React.FC = () => {
 
       {/* Quote */}
       <section id="quote" className="on-dark scroll-mt-20 bg-ink text-steel-dark">
-        <div className="wrap grid gap-12 py-20 lg:grid-cols-12 lg:gap-16 lg:py-28">
+        <div className="wrap grid gap-12 py-16 lg:grid-cols-12 lg:gap-16 lg:py-28">
           <div className="lg:col-span-4">
-            <h2 className="text-[2.25rem] sm:text-[3rem]">{c.quoteTitle}</h2>
-            <p className="mt-5 text-[1.1rem]">{c.quoteText}</p>
-            <h3 className="mt-12 text-lg">{c.nextTitle}</h3>
-            <ol className="mt-5 space-y-5">
+            <h2 className="text-[2rem] sm:text-[2.5rem] lg:text-[3rem]">{c.quoteTitle}</h2>
+            <p className="mt-4 sm:mt-5 text-[1.05rem] sm:text-[1.1rem]">{c.quoteText}</p>
+            <h3 className="mt-10 sm:mt-12 text-lg">{c.nextTitle}</h3>
+            <ol className="mt-5 space-y-4 sm:space-y-5">
               {c.next.map((t, i) => (
                 <li key={t} className="grid grid-cols-[2.25rem_1fr] items-baseline">
                   <span className="display text-xl text-white">{i + 1}</span>
@@ -319,7 +319,7 @@ export const HomePage: React.FC = () => {
                 </li>
               ))}
             </ol>
-            <div className="mt-12 border-t border-white/15 pt-6 text-[0.975rem]">
+            <div className="mt-10 sm:mt-12 border-t border-white/15 pt-6 text-[0.975rem]">
               <p className="font-medium text-white">{c.preferTalk}</p>
               <p className="mt-2">
                 <a href={telHref(companyData.phone)} className="text-white underline decoration-white/30 underline-offset-4 hover:decoration-white">
@@ -335,7 +335,7 @@ export const HomePage: React.FC = () => {
               <p className="mt-3 text-white/50">{companyText[locale].hours}</p>
             </div>
           </div>
-          <div className="bg-white p-6 text-steel shadow-[0_30px_80px_-30px_rgb(0_0_0_/_0.6)] sm:p-10 lg:col-span-8">
+          <div className="bg-white p-5 sm:p-8 lg:p-10 text-steel shadow-[0_30px_80px_-30px_rgb(0_0_0_/_0.6)] lg:col-span-8">
             <QuoteForm idPrefix="home" />
           </div>
         </div>
@@ -381,7 +381,7 @@ const ProductDirectory: React.FC = () => {
         </div>
 
         {/* Desktop: directory board */}
-        <div className="mt-14 hidden gap-16 lg:grid lg:grid-cols-12">
+        <div className="mt-14 hidden gap-8 xl:gap-16 lg:grid lg:grid-cols-12">
           <ul className="lg:col-span-5 border-t border-white/12" role="tablist" aria-label={c.productsLabel}>
             {productCategories.map((item, i) => {
               const on = i === active;
@@ -395,10 +395,10 @@ const ProductDirectory: React.FC = () => {
                     onClick={() => setActive(i)}
                     onMouseEnter={() => setActive(i)}
                     onFocus={() => setActive(i)}
-                    className="group flex w-full items-center justify-between gap-6 py-6 text-start"
+                    className="group flex w-full items-center justify-between gap-4 py-5 xl:py-6 text-start"
                   >
                     <span
-                      className={`display text-[1.75rem] leading-tight transition-colors duration-300 ${
+                      className={`display text-[1.4rem] xl:text-[1.75rem] leading-tight transition-colors duration-300 ${
                         on ? 'text-white' : 'text-white/40 group-hover:text-white/70'
                       }`}
                     >
@@ -432,13 +432,13 @@ const ProductDirectory: React.FC = () => {
               ))}
             </div>
             <div key={p.id} className="fade-swap">
-              <div className="mt-7 grid grid-cols-[1fr_auto] items-start gap-8">
+              <div className="mt-6 xl:mt-7 grid grid-cols-1 sm:grid-cols-[1fr_auto] items-start gap-6 xl:gap-8">
                 <div>
-                  <p className="text-[1.15rem] text-white">{p.summary}</p>
+                  <p className="text-[1.1rem] xl:text-[1.15rem] text-white">{p.summary}</p>
                   <p className="mt-2 text-[0.95rem] text-white/55">{c.suited(p.application)}</p>
                 </div>
-                <div className="flex shrink-0 flex-col items-end gap-3">
-                  <Link to={`/products/${p.slug}`} className="btn btn-white !min-h-[46px]">{c.details}</Link>
+                <div className="flex shrink-0 flex-row sm:flex-col items-start sm:items-end gap-3">
+                  <Link to={`/products/${p.slug}`} className="btn btn-white !min-h-[44px]">{c.details}</Link>
                   <Link to={quoteHref(p.slug)} className="text-[0.95rem] text-white/80 underline decoration-white/30 underline-offset-4 hover:text-white">
                     {c.quote}
                   </Link>
@@ -449,15 +449,15 @@ const ProductDirectory: React.FC = () => {
         </div>
 
         {/* Mobile and tablet: stacked */}
-        <ul className="mt-12 grid gap-12 sm:grid-cols-2 lg:hidden">
+        <ul className="mt-10 sm:mt-12 grid gap-8 sm:gap-10 sm:grid-cols-2 lg:hidden">
           {productCategories.map((item) => (
-            <li key={item.id}>
+            <li key={item.id} className="group">
               <Link to={`/products/${item.slug}`} className="block">
-                <div className="aspect-[4/3] overflow-hidden bg-ink-2">
-                  <img src={item.image} alt={item.imageAlt} className="h-full w-full object-cover" loading="lazy" />
+                <div className="aspect-[4/3] overflow-hidden bg-ink-2 rounded-sm">
+                  <img src={item.image} alt={item.imageAlt} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                 </div>
-                <h3 className="display mt-5 text-[1.5rem]">{item.title}</h3>
-                <p className="mt-2">{item.summary}</p>
+                <h3 className="display mt-4 sm:mt-5 text-[1.35rem] sm:text-[1.5rem] text-white group-hover:text-brand-tint transition-colors">{item.title}</h3>
+                <p className="mt-2 text-[0.95rem] text-steel-dark leading-relaxed">{item.summary}</p>
               </Link>
             </li>
           ))}

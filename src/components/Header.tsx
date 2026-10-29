@@ -82,7 +82,7 @@ export const Header: React.FC = () => {
   useEffect(() => setOpen(false), [location.pathname]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -100,21 +100,26 @@ export const Header: React.FC = () => {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,color] duration-300 ${
-        solid ? 'bg-white text-ink shadow-[0_1px_0_var(--color-line)]' : 'bg-transparent text-white'
+        solid
+          ? 'bg-white/95 backdrop-blur-md text-ink shadow-[0_1px_0_var(--color-line)]'
+          : 'bg-gradient-to-b from-ink/85 via-ink/40 to-transparent text-white'
       }`}
     >
-      <div className="wrap flex h-[84px] items-center justify-between gap-6">
+      <div className="wrap flex h-[68px] sm:h-[76px] lg:h-[84px] items-center justify-between gap-4 sm:gap-6">
         <Link to="/" className="shrink-0" aria-label={c.home}>
           <GtecLogo variant={solid ? 'dark' : 'light'} />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-7 xl:gap-10" aria-label={c.main}>
+        {/* Desktop & iPad landscape navigation */}
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-9" aria-label={c.main}>
           {c.nav.map((l) => (
             <NavLink
               key={l.href}
               to={l.href}
               className={({ isActive }) =>
-                `relative whitespace-nowrap py-2 text-[0.975rem] transition-opacity ${isActive ? 'opacity-100' : 'opacity-75 hover:opacity-100'}`
+                `relative whitespace-nowrap py-2 text-[0.925rem] xl:text-[0.975rem] font-medium transition-opacity ${
+                  isActive ? 'opacity-100 font-semibold' : 'opacity-80 hover:opacity-100'
+                }`
               }
             >
               {({ isActive }) => (
@@ -131,26 +136,43 @@ export const Header: React.FC = () => {
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-5 xl:gap-7">
+        {/* Desktop & iPad actions */}
+        <div className="hidden lg:flex items-center gap-4 xl:gap-6">
           <LanguageSwitch
-            className={`whitespace-nowrap border-e pe-5 xl:pe-7 text-[0.975rem] opacity-80 hover:opacity-100 ${solid ? 'border-line' : 'border-white/25'}`}
+            className={`whitespace-nowrap border-e pe-4 xl:pe-6 text-[0.9rem] xl:text-[0.95rem] font-medium opacity-85 hover:opacity-100 transition-opacity ${
+              solid ? 'border-line text-ink' : 'border-white/25 text-white'
+            }`}
           />
-          <a href={telHref(companyData.phone)} className="hidden xl:inline whitespace-nowrap text-[0.975rem] tabular-nums opacity-90 hover:opacity-100">
+          <a
+            href={telHref(companyData.phone)}
+            className="hidden xl:inline whitespace-nowrap text-[0.9rem] xl:text-[0.95rem] tabular-nums opacity-90 hover:opacity-100"
+          >
             <Ltr>{companyData.phone}</Ltr>
           </a>
           <Link
             to="/contact"
-            className={`btn !min-h-[46px] !px-6 !text-[0.95rem] ${solid ? 'btn-primary' : 'btn-white'}`}
+            className={`btn !min-h-[40px] xl:!min-h-[46px] !px-4 xl:!px-6 !text-[0.875rem] xl:!text-[0.95rem] whitespace-nowrap ${
+              solid ? 'btn-primary' : 'btn-white'
+            }`}
           >
             {c.quote}
           </Link>
         </div>
 
-        <div className="flex items-center gap-1 lg:hidden">
-          <LanguageSwitch className="grid h-11 place-items-center px-2 text-[0.95rem]" />
+        {/* Mobile & iPad portrait actions */}
+        <div className="flex items-center gap-1 sm:gap-2 lg:hidden">
+          <LanguageSwitch
+            className={`px-2.5 py-1 text-xs font-semibold tracking-wide rounded border transition-colors ${
+              solid
+                ? 'border-line text-ink bg-mist/60 hover:bg-mist'
+                : 'border-white/30 text-white bg-white/10 hover:bg-white/20'
+            }`}
+          />
           <a
             href={telHref(companyData.phone)}
-            className="grid h-11 w-11 place-items-center"
+            className={`grid h-10 w-10 place-items-center rounded transition-colors ${
+              solid ? 'text-ink hover:bg-mist' : 'text-white hover:bg-white/10'
+            }`}
             aria-label={`${c.call} ${companyData.phone}`}
           >
             <Phone className="h-5 w-5" strokeWidth={1.75} />
@@ -158,7 +180,9 @@ export const Header: React.FC = () => {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="grid h-11 w-11 place-items-center"
+            className={`grid h-10 w-10 place-items-center rounded transition-colors ${
+              solid ? 'text-ink hover:bg-mist' : 'text-white hover:bg-white/10'
+            }`}
             aria-label={open ? c.closeMenu : c.openMenu}
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -168,27 +192,44 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
+      {/* Mobile Drawer */}
       {open && (
-        <div id="mobile-menu" className="lg:hidden fixed inset-x-0 top-[84px] bottom-0 overflow-y-auto bg-white text-ink">
-          <nav className="wrap flex flex-col py-4" aria-label={c.mobile}>
+        <div
+          id="mobile-menu"
+          className="lg:hidden fixed inset-x-0 top-[68px] sm:top-[76px] bottom-0 overflow-y-auto bg-white text-ink border-t border-line shadow-2xl"
+        >
+          <nav className="wrap flex flex-col py-6 pb-24" aria-label={c.mobile}>
+            {/* Language switch row in drawer */}
+            <div className="flex items-center justify-between border-b border-line pb-4 mb-2">
+              <span className="text-sm font-medium text-steel">{locale === 'ar' ? 'اللغة' : 'Language'}</span>
+              <LanguageSwitch className="px-3.5 py-1.5 rounded border border-line bg-mist text-sm font-semibold text-brand hover:border-brand" />
+            </div>
+
             {c.nav.map((l) => (
               <NavLink
                 key={l.href}
                 to={l.href}
                 className={({ isActive }) =>
-                  `display border-b border-line py-5 text-2xl ${isActive ? 'text-brand' : 'text-ink'}`
+                  `display border-b border-line py-4 text-xl sm:text-2xl transition-colors ${
+                    isActive ? 'text-brand font-semibold' : 'text-ink hover:text-brand'
+                  }`
                 }
               >
                 {l.label}
               </NavLink>
             ))}
+
             <div className="mt-8 flex flex-col gap-3">
-              <Link to="/contact" className="btn btn-primary w-full">{c.quote}</Link>
-              <a href={telHref(companyData.phone)} className="btn btn-secondary w-full">
-                {c.call} <Ltr>{companyData.phone}</Ltr>
+              <Link to="/contact" className="btn btn-primary w-full !min-h-[50px]">
+                {c.quote}
+              </Link>
+              <a href={telHref(companyData.phone)} className="btn btn-secondary w-full !min-h-[50px]">
+                <Phone className="h-4 w-4" />
+                <span>{c.call} <Ltr>{companyData.phone}</Ltr></span>
               </a>
             </div>
-            <p className="mt-6 text-sm text-steel-light">{companyText[locale].hours}</p>
+
+            <p className="mt-6 text-sm text-steel-light text-center">{companyText[locale].hours}</p>
           </nav>
         </div>
       )}

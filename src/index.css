@@ -6,6 +6,7 @@
   with the red and green chevrons kept for the mark itself and status states.
 */
 @theme {
+  --breakpoint-xs: 26rem;
   --color-ink: #0f1e45;        /* deep navy: headings, dark bands, footer */
   --color-brand: #233d90;      /* logo navy: buttons, links */
   --color-brand-dark: #1a2f72; /* hover / pressed */
