@@ -223,215 +223,42 @@
 /* The wordmark always stays in the brand typeface. */
 .wordmark { font-family: var(--font-display) !important; font-stretch: 125% !important; letter-spacing: 0.06em !important; font-weight: 600; }
 
-/* ---------- Signature: Architectural Elevator Door Reveal ---------- */
+/* ---------- Signature: elevator doors part to reveal the hero ---------- */
 .doors {
   position: absolute;
   inset: 0;
-  z-index: 30;
+  z-index: 20;
   display: grid;
   grid-template-columns: 1fr 1fr;
   pointer-events: none;
-  overflow: hidden;
 }
-
-/* Brushed Architectural Titanium / Stainless Steel Finish */
 .door {
-  position: relative;
-  height: 100%;
-  width: 100%;
   background:
-    /* Fine anisotropic brushed metal grain */
-    repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 3px),
-    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.035) 0 2px, transparent 2px 4px),
-    /* Multi-stop architectural metallic sheen */
-    linear-gradient(115deg, #091222 0%, #121e38 30%, #1a2a4e 60%, #121e38 85%, #091222 100%);
-  animation: door-slide 1.02s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-  will-change: transform;
+    repeating-linear-gradient(90deg, rgb(255 255 255 / 0.035) 0 1px, transparent 1px 3px),
+    linear-gradient(180deg, #2a3b6b 0%, #14244f 55%, #0f1e45 100%);
+  animation: door-open 1.5s cubic-bezier(0.7, 0, 0.2, 1) 0.35s forwards;
 }
+.door-left  { box-shadow: inset -1px 0 0 rgb(255 255 255 / 0.18); --dir: -100%; }
+.door-right { box-shadow: inset 1px 0 0 rgb(0 0 0 / 0.35); --dir: 100%; }
+@keyframes door-open { to { transform: translateX(var(--dir)); } }
 
-/* Left & Right Door Trajectories & Beveled Meeting Edges */
-.door-left {
-  --door-dir: -100%;
-  border-right: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.35), inset -8px 0 24px rgba(0, 0, 0, 0.85);
-}
-.door-right {
-  --door-dir: 100%;
-  border-left: 1px solid rgba(0, 0, 0, 0.6);
-  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.18), inset 8px 0 24px rgba(0, 0, 0, 0.85);
-}
-
-@keyframes door-slide {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(var(--door-dir), 0, 0);
-  }
-}
-
-/* Architectural Recessed Panel Inlay (Bespoke Elevator Cab Finish) */
-.door-panel-inlay {
-  position: absolute;
-  inset: 48px 36px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.015) 0%, transparent 100%);
-  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.45);
-  pointer-events: none;
-}
-@media (max-width: 640px) {
-  .door-panel-inlay {
-    inset: 32px 16px;
-  }
-}
-
-/* Precision Stile Edges */
-.door-edge {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-}
-.door-edge-left {
-  right: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.12) 100%);
-}
-.door-edge-right {
-  left: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.45) 100%);
-}
-
-/* Center Precision Laser Seam */
-.doors-center-seam {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 2px;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 100%);
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.9);
-  z-index: 32;
-  animation: seam-fade 0.28s ease-out 0.2s forwards;
-}
-@keyframes seam-fade {
-  to {
-    opacity: 0;
-    transform: translateX(-50%) scaleX(0);
-  }
-}
-
-/* Flush Architectural Floor Indicator / Call Transom */
-.doors-indicator {
-  position: absolute;
-  top: 22%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 35;
-  pointer-events: none;
-  animation: indicator-fade 0.42s ease-out 0.2s forwards;
-}
-
-.doors-indicator-housing {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  padding: 0.45rem 1.05rem;
-  border-radius: 9999px;
-  background: rgba(8, 14, 26, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
-}
-
-.doors-indicator-arrow {
-  color: #38a548;
-  font-size: 0.8rem;
-  line-height: 1;
-  text-shadow: 0 0 10px rgba(56, 165, 72, 0.8);
-  animation: arrow-pulse 0.75s ease-in-out infinite alternate;
-}
-
-@keyframes arrow-pulse {
-  from { opacity: 0.75; transform: translateY(0); }
-  to { opacity: 1; transform: translateY(-1.5px); }
-}
-
-.doors-indicator-text {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.doors-indicator-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #38a548;
-  box-shadow: 0 0 8px #38a548;
-}
-
-@keyframes indicator-fade {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.9);
-  }
-}
-
-/* Synchronized Hero Reveal: Text begins emerging smoothly as doors open */
-.hero-copy {
-  opacity: 0;
-  transform: translateY(16px);
-  animation: hero-in 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.32s forwards;
-  will-change: opacity, transform;
-}
-.doors-done .hero-copy {
-  opacity: 1;
-  transform: none;
-  animation: none;
-}
-@keyframes hero-in {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Hero Background Image Architectural Depth Settle */
-.hero-bg-anim {
-  animation: hero-image-in 1.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  will-change: transform, filter;
-}
-.doors-done .hero-bg-anim {
-  animation: none;
-  transform: none;
-  filter: none;
-}
-@keyframes hero-image-in {
-  from {
-    transform: scale(1.04);
-    filter: brightness(0.8);
-  }
-  to {
-    transform: scale(1);
-    filter: brightness(1);
-  }
-}
+.hero-copy { opacity: 0; transform: translateY(14px); animation: hero-in 0.9s ease-out 1.25s forwards; }
+.doors-done .hero-copy { opacity: 1; transform: none; animation: none; }
+@keyframes hero-in { to { opacity: 1; transform: none; } }
 
 /* Product directory crossfade (responds to the visitor's choice) */
 .fade-swap { animation: fade-swap 0.45s ease-out; }
 @keyframes fade-swap { from { opacity: 0; } to { opacity: 1; } }
 
-/* Clean accessible fallback for prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
-  .doors { display: none !important; }
-  .hero-copy { opacity: 1 !important; transform: none !important; animation: none !important; }
-  .hero-bg-anim { animation: none !important; transform: none !important; filter: none !important; }
+  .doors { display: none; }
+  .hero-copy { opacity: 1; transform: none; animation: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
