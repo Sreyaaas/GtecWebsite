@@ -43,7 +43,7 @@ const copy = {
 };
 
 /** Switches language while keeping the visitor on the same page. */
-export const LanguageSwitch: React.FC<{ className?: string }> = ({ className = '' }) => {
+export const LanguageSwitch: React.FC<{ className?: string; onClick?: () => void }> = ({ className = '', onClick }) => {
   const locale = useLocale();
   const c = useCopy(copy);
   const { pathname, search } = useLocation();
@@ -64,6 +64,7 @@ export const LanguageSwitch: React.FC<{ className?: string }> = ({ className = '
         } catch {
           /* ignore */
         }
+        onClick?.();
       }}
     >
       {c.switchLabel}
@@ -89,6 +90,22 @@ export const Header: React.FC = () => {
   }, [location.pathname]);
 
   useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 1024) setOpen(false);
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    if (open) window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open]);
+
+  useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
@@ -100,13 +117,19 @@ export const Header: React.FC = () => {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,color] duration-300 ${
-        solid
+        open
+          ? 'h-dvh bg-white text-ink flex flex-col lg:h-auto lg:bg-white/95 lg:backdrop-blur-md'
+          : solid
           ? 'bg-white/95 backdrop-blur-md text-ink shadow-[0_1px_0_var(--color-line)]'
           : 'bg-gradient-to-b from-ink/85 via-ink/40 to-transparent text-white'
       }`}
     >
-      <div className="wrap flex h-[68px] sm:h-[76px] lg:h-[84px] items-center justify-between gap-4 sm:gap-6">
-        <Link to="/" className="shrink-0" aria-label={c.home}>
+      <div
+        className={`shrink-0 wrap flex h-[68px] sm:h-[76px] lg:h-[84px] items-center justify-between gap-4 sm:gap-6 ${
+          open ? 'border-b border-line' : ''
+        }`}
+      >
+        <Link to="/" className="shrink-0" aria-label={c.home} onClick={() => setOpen(false)}>
           <GtecLogo variant={solid ? 'dark' : 'light'} />
         </Link>
 
@@ -167,6 +190,7 @@ export const Header: React.FC = () => {
                 ? 'border-line text-ink bg-mist/60 hover:bg-mist'
                 : 'border-white/30 text-white bg-white/10 hover:bg-white/20'
             }`}
+            onClick={() => setOpen(false)}
           />
           <a
             href={telHref(companyData.phone)}
@@ -196,19 +220,23 @@ export const Header: React.FC = () => {
       {open && (
         <div
           id="mobile-menu"
-          className="lg:hidden fixed inset-x-0 top-[68px] sm:top-[76px] bottom-0 overflow-y-auto bg-white text-ink border-t border-line shadow-2xl"
+          className="lg:hidden flex-1 overflow-y-auto overscroll-contain bg-white text-ink"
         >
-          <nav className="wrap flex flex-col py-6 pb-24" aria-label={c.mobile}>
+          <nav className="wrap flex flex-col py-6 pb-28" aria-label={c.mobile}>
             {/* Language switch row in drawer */}
             <div className="flex items-center justify-between border-b border-line pb-4 mb-2">
               <span className="text-sm font-medium text-steel">{locale === 'ar' ? 'اللغة' : 'Language'}</span>
-              <LanguageSwitch className="px-3.5 py-1.5 rounded border border-line bg-mist text-sm font-semibold text-brand hover:border-brand" />
+              <LanguageSwitch
+                className="px-3.5 py-1.5 rounded border border-line bg-mist text-sm font-semibold text-brand hover:border-brand"
+                onClick={() => setOpen(false)}
+              />
             </div>
 
             {c.nav.map((l) => (
               <NavLink
                 key={l.href}
                 to={l.href}
+                onClick={() => setOpen(false)}
                 className={({ isActive }) =>
                   `display border-b border-line py-4 text-xl sm:text-2xl transition-colors ${
                     isActive ? 'text-brand font-semibold' : 'text-ink hover:text-brand'
@@ -220,10 +248,18 @@ export const Header: React.FC = () => {
             ))}
 
             <div className="mt-8 flex flex-col gap-3">
-              <Link to="/contact" className="btn btn-primary w-full !min-h-[50px]">
+              <Link
+                to="/contact"
+                onClick={() => setOpen(false)}
+                className="btn btn-primary w-full !min-h-[50px]"
+              >
                 {c.quote}
               </Link>
-              <a href={telHref(companyData.phone)} className="btn btn-secondary w-full !min-h-[50px]">
+              <a
+                href={telHref(companyData.phone)}
+                onClick={() => setOpen(false)}
+                className="btn btn-secondary w-full !min-h-[50px]"
+              >
                 <Phone className="h-4 w-4" />
                 <span>{c.call} <Ltr>{companyData.phone}</Ltr></span>
               </a>
