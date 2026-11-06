@@ -14,28 +14,28 @@ const copy = {
     intro: `An elevator and escalator contractor founded in Dammam in ${year}, serving developers, contractors and building owners across Saudi Arabia.`,
     storyTitle: 'Built around the building, not the catalogue',
     story: [
-      `Global Team Elevator Co. was established in ${year} to meet the growing needs of Saudi Arabia’s residential, commercial and industrial construction. We bring elevator and escalator design, supply, installation and maintenance together under one roof.`,
-      'We do not treat elevators as off-the-shelf equipment. Each project starts with the building: how it will be used, how many people it serves and how much space there is for the shaft. From early shaft sizing and traffic analysis to installation and long-term maintenance, the same team stays involved at every stage.',
-      'Our head office in Dammam coordinates supply, project delivery and maintenance across the Kingdom.',
+      `Global Team Elevator Co. (GTEC), a division of Sulthan Mutheri Group of Companies, was established in ${year} to meet the growing needs of Saudi Arabia’s residential, commercial and industrial construction. With more than 1,200 installations delivered across the Kingdom, we bring elevator and escalator design, supply, installation and maintenance together under one roof.`,
+      'We do not treat elevators as off-the-shelf equipment. Each project starts with the building: how it will be used, how many people it serves and how much space there is for the shaft. In long-standing partnership with trusted manufacturers including Fuji Yide, every system is built to international standards and strictly inspected before site installation.',
+      'Our workforce is 100% under direct company sponsorship, equipped with valid Iqama, comprehensive health coverage, and certified safety induction training prior to site deployment. Our head office in Dammam coordinates supply, project delivery and 24/7 technical support across the Kingdom.',
     ],
     imageAlt: 'Elevator doors on a building landing with a floor number sign',
     principlesTitle: 'What we hold ourselves to',
     principles: [
       {
-        title: 'Safety first',
-        text: 'Every installation follows the Saudi Building Code, SASO regulations and the EN 81 elevator safety standards, from shaft alignment to the last electrical circuit.',
+        title: 'Safety and compliance',
+        text: 'Every installation follows the Saudi Building Code, SASO regulations and EN 81 elevator safety standards. Technicians are deployed only after completing safety induction training, backed by full legal compliance.',
       },
       {
-        title: 'Equipment we can stand behind',
-        text: 'We work with established manufacturers and inspect equipment before it is installed, because quality on day one is what keeps an elevator reliable in year ten.',
+        title: 'Equipment we stand behind',
+        text: 'We partner with established manufacturers including Fuji Yide and inspect equipment before installation, because quality on day one is what keeps an elevator reliable in year ten.',
       },
       {
-        title: 'A relationship after handover',
-        text: 'Our work with owners and facility managers continues through preventive maintenance, spare parts and local technical support.',
+        title: 'A lifelong commitment after handover',
+        text: 'Our work continues through 24/7 emergency support, scheduled preventive maintenance, genuine spare parts in the Eastern Province, and modernisation over the lifetime of the equipment.',
       },
     ],
     officeTitle: 'Head office',
-    rows: { address: 'Address', phone: 'Telephone', mobile: 'Mobile', email: 'Email', hours: 'Hours' },
+    rows: { address: 'Address', phone: 'Telephone', mobile: 'Mobile', email: 'Email', hours: 'Office hours', support: 'Emergency support' },
   },
   ar: {
     crumb: 'من نحن',
@@ -43,28 +43,28 @@ const copy = {
     intro: `شركة متخصصة في توريد وتركيب وصيانة المصاعد والسلالم الكهربائية، تأسست في الدمام عام ${year}، وتخدم المطورين والمقاولين وملاك المباني في مختلف مناطق المملكة العربية السعودية.`,
     storyTitle: 'نبدأ من المبنى، لا من الكتالوج',
     story: [
-      `تأسست GTEC عام ${year} لتلبية الاحتياجات المتنامية لقطاعات البناء السكني والتجاري والصناعي في المملكة العربية السعودية. ونجمع تحت سقف واحد تصميم المصاعد والسلالم الكهربائية وتوريدها وتركيبها وصيانتها.`,
-      'لا نتعامل مع المصاعد على أنها معدات جاهزة. يبدأ كل مشروع من المبنى نفسه: كيف سيُستخدم، وكم عدد مستخدميه، وما المساحة المتاحة للبئر. ومن تحديد مقاسات البئر وتحليل الحركة في المراحل الأولى إلى التركيب والصيانة طويلة الأمد، يبقى الفريق نفسه معك في كل مرحلة.',
-      'ويتولى مقرنا الرئيسي في الدمام تنسيق التوريد وتنفيذ المشاريع والصيانة في مختلف أنحاء المملكة.',
+      `تأسست شركة الفريق العالمي للمصاعد (GTEC)، إحدى شركات مجموعة سلطان المطيري، في عام ${year} لمواكبة التوسع العمراني في المملكة العربية السعودية. ومع إنجاز أكثر من 1,200 عملية تركيب في مختلف أنحاء المملكة، نجمع تحت سقف واحد خدمات التصميم والتوريد والتركيب والصيانة.`,
+      'لا نتعامل مع المصاعد على أنها معدات جاهزة، بل يبدأ كل مشروع من المبنى نفسه وحركة مستخدميه. وبالتعاون مع كبرى الشركات المصنّعة الرائدة وفي مقدمتها فوجي ييد (Fuji Yide)، نحرص على مطابقة كل نظام للمواصفات القياسية وفحصه قبل التوريد للموقع.',
+      'يعمل كامل كادرنا الفني تحت الكفالة القانونية المباشرة للشركة مع إقامات سارية وتأمين طبي وتدريب مهني معتمد للسلامة قبل بدء العمل في أي موقع. ويتولى مقرنا بالدمام إدارة المشاريع وخدمات الدعم الفني للطوارئ على مدار الساعة (24/7).',
     ],
     imageAlt: 'أبواب مصعد في ردهة مبنى مع لافتة رقم الطابق',
     principlesTitle: 'المبادئ التي نلتزم بها',
     principles: [
       {
-        title: 'السلامة أولًا',
-        text: 'نلتزم في كل تركيب بكود البناء السعودي واشتراطات الهيئة السعودية للمواصفات والمقاييس والجودة (SASO) ومعايير سلامة المصاعد EN 81، من ضبط البئر حتى آخر دائرة كهربائية.',
+        title: 'السلامة والامتثال أولًا',
+        text: 'نلتزم بكود البناء السعودي واشتراطات SASO ومعايير سلامة المصاعد EN 81. ويباشر الفنيون العمل بعد اجتياز دورات السلامة المهنية، تحت مظلة قانونية وتأمينية كاملة.',
       },
       {
         title: 'معدات نثق بها',
-        text: 'نتعامل مع شركات تصنيع راسخة ونفحص المعدات قبل تركيبها، لأن الجودة في اليوم الأول هي ما يحافظ على موثوقية المصعد بعد عشر سنوات.',
+        text: 'نتعاون مع مصنّعين عالميين موثوقين مثل فوجي ييد (Fuji Yide) ونفحص المعدات قبل التركيب، لأن الجودة المتقنة من البداية هي ضمان العمل السلس والمستدام لسنوات طويلة.',
       },
       {
-        title: 'علاقة مستمرة بعد التسليم',
-        text: 'يستمر عملنا مع الملاك ومديري المرافق من خلال الصيانة الوقائية وقطع الغيار والدعم الفني المحلي.',
+        title: 'التزام مستمر بعد التسليم',
+        text: 'يمتد التزامنا إلى ما بعد التسليم عبر استجابة طوارئ على مدار الساعة (24/7)، وصيانة وقائية مجدولة، ومخزون فوري من قطع الغيار الأصلية في المنطقة الشرقية.',
       },
     ],
     officeTitle: 'المقر الرئيسي',
-    rows: { address: 'العنوان', phone: 'الهاتف', mobile: 'الجوال', email: 'البريد الإلكتروني', hours: 'ساعات العمل' },
+    rows: { address: 'العنوان', phone: 'الهاتف', mobile: 'الجوال', email: 'البريد الإلكتروني', hours: 'ساعات العمل', support: 'دعم الطوارئ' },
   },
 };
 
@@ -130,6 +130,7 @@ export const AboutPage: React.FC = () => {
               <a href={`mailto:${companyData.email}`} className="text-link"><Ltr>{companyData.email}</Ltr></a>
             </Row>
             <Row label={c.rows.hours}>{text.hours}</Row>
+            <Row label={c.rows.support}>{text.support}</Row>
           </dl>
         </div>
       </section>

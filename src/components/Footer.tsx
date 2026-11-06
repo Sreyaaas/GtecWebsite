@@ -48,7 +48,26 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-4">
             <GtecLogo variant="light" />
             <p className="mt-6 max-w-sm text-[0.95rem] leading-relaxed">{c.blurb}</p>
-            <p className="mt-6 text-[0.95rem]">
+            <div className="mt-5 flex items-center gap-3 text-[0.9rem]">
+              <a
+                href={companyData.social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-white transition-colors"
+              >
+                Facebook
+              </a>
+              <span className="text-white/30">/</span>
+              <a
+                href={companyData.social.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-white transition-colors"
+              >
+                Twitter (X)
+              </a>
+            </div>
+            <p className="mt-5 text-[0.95rem]">
               {c.language}:{' '}
               <LanguageSwitch className="text-white underline decoration-white/30 underline-offset-4 hover:decoration-white" />
             </p>
@@ -111,7 +130,9 @@ export const Footer: React.FC = () => {
           <p>
             © <Ltr>{year}</Ltr> {c.rights}
           </p>
-          <p>{text.hours}</p>
+          <p>
+            {text.hours} <span className="text-white/30">•</span> <span className="text-white/75">{text.support}</span>
+          </p>
         </div>
       </div>
     </footer>

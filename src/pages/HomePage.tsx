@@ -20,8 +20,8 @@ const copy = {
     call: 'Call',
     facts: [
       ['Since 2007', 'Head office in Dammam'],
+      ['1,200+ Projects', 'Installed across KSA'],
       ['SASO and EN 81', 'Compliant equipment'],
-      ['Kingdom-wide', 'Supply, installation, service'],
     ],
     statement:
       'From a single villa lift to every elevator in a tower, GTEC takes responsibility for the whole job: design, supply, installation and the maintenance that follows.',
@@ -35,7 +35,7 @@ const copy = {
     maintTitle: 'Already have elevators? We can look after them.',
     maintText:
       'A GTEC maintenance contract covers scheduled safety checks, inspection and lubrication, controller diagnostics and breakdown call-outs, so your elevators stay safe and your tenants are not left waiting.',
-    maintPoints: ['Preventive maintenance on a fixed schedule', 'Genuine spare parts in the Eastern Province', 'Modernisation of older elevators'],
+    maintPoints: ['Preventive maintenance on a fixed schedule', '24/7 breakdown call-outs & emergency support', 'Genuine spare parts in the Eastern Province'],
     maintCta: 'Ask about maintenance',
     whatsapp: 'WhatsApp us',
     whyAlt: 'Crossing escalators beneath a glass roof in a busy shopping atrium',
@@ -84,8 +84,8 @@ const copy = {
     call: 'اتصل على',
     facts: [
       ['منذ عام 2007', 'المقر الرئيسي في الدمام'],
+      ['+1,200 مشروع', 'تم تركيبه بالمملكة'],
       ['متوافقة مع SASO و EN 81', 'معدات مطابقة للمعايير'],
-      ['في جميع أنحاء المملكة', 'توريد وتركيب وصيانة'],
     ],
     statement:
       'من مصعد واحد في فيلا إلى جميع مصاعد البرج، تتولى GTEC المسؤولية الكاملة عن المشروع: التصميم والتوريد والتركيب، ثم الصيانة.',
@@ -98,7 +98,7 @@ const copy = {
     maintTitle: 'لديك مصاعد قائمة؟ نتولى صيانتها.',
     maintText:
       'يشمل عقد الصيانة من GTEC فحوصات سلامة مجدولة، والفحص والتزييت، وتشخيص لوحة التحكم، والاستجابة للأعطال، لتبقى مصاعدك آمنة ولا يضطر المستخدمون إلى الانتظار.',
-    maintPoints: ['صيانة وقائية وفق جدول ثابت', 'قطع غيار أصلية متوفرة في المنطقة الشرقية', 'تحديث المصاعد القديمة'],
+    maintPoints: ['صيانة وقائية وفق جدول ثابت', 'استجابة للأعطال ودعم طوارئ على مدار الساعة (24/7)', 'قطع غيار أصلية متوفرة في المنطقة الشرقية'],
     maintCta: 'استفسر عن الصيانة',
     whatsapp: 'راسلنا على واتساب',
     whyAlt: 'سلالم كهربائية متقاطعة تحت سقف زجاجي في فناء مركز تجاري',

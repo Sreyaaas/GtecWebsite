@@ -15,6 +15,56 @@
     <meta property="og:description" content="Elevators and escalators designed, installed and maintained across the Kingdom. Dammam head office, established 2007." />
     <meta property="og:image" content="/images/elevator-interior-real.jpg" />
 
+    <!-- Geo targeting -->
+    <meta name="geo.region" content="SA-04" />
+    <meta name="geo.placename" content="Dammam, Eastern Province, Saudi Arabia" />
+    <meta name="geo.position" content="26.410114;50.0543603" />
+    <meta name="ICBM" content="26.410114, 50.0543603" />
+
+    <!-- Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://gtecelevators.com/#organization",
+          "name": "Global Team Elevator Co. (GTEC)",
+          "alternateName": "GTEC Elevators",
+          "url": "https://gtecelevators.com/",
+          "foundingDate": "2007",
+          "sameAs": [
+            "https://www.facebook.com/gtec.elevators.1",
+            "https://twitter.com/gtecelevators"
+          ]
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://gtecelevators.com/#localbusiness",
+          "name": "Global Team Elevator Co. (GTEC)",
+          "url": "https://gtecelevators.com/",
+          "telephone": "+966138181396",
+          "email": "sales@gtecelevators.com",
+          "priceRange": "$$",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Al Aali Street #1 - 71, P.O. Box 72635",
+            "addressLocality": "Dammam",
+            "addressRegion": "Eastern Province",
+            "postalCode": "31528",
+            "addressCountry": "SA"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 26.410114,
+            "longitude": 50.0543603
+          },
+          "areaServed": "Kingdom of Saudi Arabia"
+        }
+      ]
+    }
+    </script>
+
   </head>
   <body>
     <div id="root"></div>
